@@ -15,6 +15,14 @@ class CarsNew extends Component {
   }
 
   required = value => (value ? undefined : 'Required');
+  plateValidation = (value) => {
+    console.log(value);
+    return (
+      value && /[A-Z]{2}-?[\d]{3}-?[A-Z]{2}/.test(value)
+        ? undefined
+        : 'Invalid plate - expected format AB-123-CD or AB123CD'
+    );
+  }
 
   renderField(field) {
     return (
@@ -27,8 +35,9 @@ class CarsNew extends Component {
           {...field.input}
           validate={field.valide}
         />
-        {field.meta.touched && field.meta.error &&
-          <span className="error" style={{ color: "red" }}>{field.meta.error}</span>}
+        {field.meta.touched && (
+          field.meta.error && <span className="error" style={{ color: "red" }}>{field.meta.error}</span> ||
+          field.meta.error && <span className="error" style={{ color: "red" }}>{field.meta.error}</span>)}
       </div>
     );
   }
@@ -80,8 +89,8 @@ class CarsNew extends Component {
                 name="plate"
                 placeholder="007"
                 type="text"
-                validate={[this.required]}
-                warn={this.required}
+                validate={[this.required, this.plateValidation]}
+                warn={this.plateValidation}
               />
             </div>
             <button type="submit" className="btn btn-primary" disabled={this.props.invalid || this.props.pristine || this.props.submitting}>Add car</button>
