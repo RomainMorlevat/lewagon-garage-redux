@@ -14,6 +14,7 @@ import carsReducer from './reducers/cars_reducer';
 
 import CarsIndex from './containers/cars_index';
 import CarsNew from './containers/cars_new';
+import CarsShow from './containers/cars_show';
 
 const initialState = {
   cars: [
@@ -39,6 +40,7 @@ ReactDOM.render(
       <Switch>
         <Route path="/cars" exact component={CarsIndex} />
         <Route path="/cars/new" exact component={CarsNew} />
+        <Route path="/cars/:id" exact component={CarsShow} />
         <Redirect from="/" to="/cars" />
       </Switch>
     </Router>

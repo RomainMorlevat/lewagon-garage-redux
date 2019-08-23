@@ -24,7 +24,7 @@ class CarsNew extends Component {
     );
   }
 
-  renderField(field) {
+  renderField = (field) => {
     return (
       <div className="form-group">
         <label htmlFor={`Input${field.label}`}>{field.label}</label>
@@ -35,9 +35,8 @@ class CarsNew extends Component {
           {...field.input}
           validate={field.valide}
         />
-        {field.meta.touched && (
-          field.meta.error && <span className="error" style={{ color: "red" }}>{field.meta.error}</span> ||
-          field.meta.error && <span className="error" style={{ color: "red" }}>{field.meta.error}</span>)}
+        {field.meta.touched &&
+          field.meta.error && <span style={{ color: "red" }}>{field.meta.error}</span>}
       </div>
     );
   }
